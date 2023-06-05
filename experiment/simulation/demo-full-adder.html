@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+    <title>
+        Full adder
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-one-quarter v-instruction-title">
+                Tasks
+            </div>
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+
+                        <li id="Task1" onclick="window.location.href = 'demo-half-adder.html';">
+                            <a>
+                                Half Adder
+                            </a>
+                        </li>
+                        <li class="is-active" id="Task2">
+                            <a>
+                                Full Adder
+                            </a>
+                        </li>
+                        <li id="Task3" onclick="window.location.href = 'demo-ripple-adder.html';">
+                            <a>
+                                Ripple Adder
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <ul style="list-style: disc;">
+                            <li><b>Start</b>- Starts the simulation after the inputs are properly selected. Default
+                                speed is 1x.</li>
+                            <li>Select the speed through dropdown menu</li>
+                            <li>The default speed is reset to x1 automatically at the beginning of every simulation or whenever you pause and resume. If you want to change the speed, you can do so only while the simulation is running (only after starting or after resuming the simulation).</li>
+                            <li><b>Reset</b> - Resets the simulation</li>
+                            <li>Click on the green input bits to set their values.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns is-centered">
+        <div class="column">
+            <select class="speed-box" autocomplete="off" name="speed" onchange="setSpeed(this.value)" id="speed">
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+            </select>
+            <button class="v-button" id="play-or-pause" onclick="simulationStatus()">Start</button>
+            <button class="v-button" id="restart" onclick="restartCircuit()">Reset</button>
+        </div>
+    </div>
+    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+        <div class="column is-9-desktop is-12-tablet is-12-mobile">
+            <div id="circuit-board">
+                <div id="working-area">
+
+                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="140%"
+                        viewBox="0 80 1000 800 ">
+
+                        <path id="path1" class="wire-demo" d="M 100,240 h 200 h 100 h 12" />
+
+                        <path id="path2" class="wire-demo" d="M 100,280 h 200 h 100  h 12" />
+
+                        <path id="path3" class="wire-demo" d="M 100,340 h 459 h 12" />
+
+                        <path id="path4" class="wire-demo" d="M 459,260 h 35 v 40 h 65 h 12" />
+
+                        <path id="path5" class="wire-demo" d="M 100,240 h 208 v 310 h 251 h 12" />
+
+                        <path id="path6" class="wire-demo" d="M 100,280 h 104 v 310 h 355 h 12" />
+
+                        <path id="path7" class="wire-demo" d="M 459,260 h 35 v 40 v 40 v 30 v 70 h 65 h 12" />
+
+                        <path id="path8" class="wire-demo" d="M 100,340 h 300 v 70 v 40 v 30 h 159 h 12" />
+
+                        <path id="path9" class="wire-demo" d="M 632 460 h 50 v 35 h 50 h 12" />
+
+                        <path id="path10" class="wire-demo" d="M 632 570 h 50 v -35 h 50 h 12" />
+
+                        <path id="path11" class="wire-demo" d="M 610 320 h 50 h 180" />
+
+                        <path id="path12" class="wire-demo" d="M 790 515 h 50" />
+
+                        <g id="and1">
+                            <path class="gate-demo" d="M 571 420 v 80 h 40 Q 651 460 611 420 h -40" />
+                        </g>
+
+                        <g id="and2">
+                            <path class="gate-demo" d="M 571 530 v 80 h 40 Q 651 570 611 530 h -40" />
+                        </g>
+
+                        <g id="xor1">
+                            <path class="gate-demo" d="M 400 220 Q 435 260 400 300 Q 436 260 400 220 M 405 220 Q 440 260 405 300 Q 510 260 405 220" />
+                        </g>
+
+                        <g id="xor2">
+                            <path class="gate-demo" d="M 559 280 Q 594 320 559 360 Q 595 320 559 280 M 564 280 Q 599 320 564 360 Q 669 320 564 280" />
+                        </g>
+
+                        <g id="xor3">
+                            <path class="gate-demo" d="M 732 475 Q 767 515 732 555 Q 768 515 732 475 M 737 475 Q 772 515 737 555 Q 842 515 737 475" />
+                        </g>
+                        <circle id="inputa" cx="100" cy="240" r="15" onclick="appendInputA()" class="color-green" />
+                        <circle id="inputb" cx="100" cy="280" r="15" onclick="appendInputB()" class="color-green" />
+                        <circle id="inputcin" cx="100" cy="340" r="15" onclick="appendInputCin()" class="color-green" />
+                        <circle id="outputcout" cx="840" cy="515" r="15" class="color-green" />
+                        <circle id="outputsum" cx="840" cy="320" r="15" class="color-green" />
+                        <text class="text-demo" x="70" y="245">A</text>
+                        <text class="text-demo" x="70" y="285">B</text>
+                        <text class="text-demo" x="50" y="345">C in</text>
+                        <text class="text-demo" x="860" y="325">Sum</text>
+                        <text class="text-demo" x="860" y="525">C out</text>
+                        <text class="text-demo" x="423" y="260">XOR</text>
+                        <text class="text-demo" x="580" y="320">XOR</text>
+                        <text class="text-demo" x="755" y="523">XOR</text>
+                        <text class="text-demo" x="580" y="465">AND</text>
+                        <text class="text-demo" x="580" y="575">AND</text>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div class="column is-3-desktop is-4-tablet is-12-mobile">
+            <div class="v-datalist-container components-list">
+                <div class="v-datalist-title">Observations</div>
+                <div class="v-datalist-row">
+                    <div id="observations"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script type="module" src="js/animation-full-adder.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+    <title>
+        Ripple carry adder
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-one-quarter v-instruction-title">
+                Tasks
+            </div>
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li id="Task1" onclick="window.location.href = 'demo-half-adder.html';">
+                            <a>
+                                Half Adder
+                            </a>
+                        </li>
+                        <li id="Task2" onclick="window.location.href = 'demo-full-adder.html';">
+                            <a>
+                                Full Adder
+                            </a>
+                        </li>
+                        <li class="is-active" id="Task3">
+                            <a>
+                                Ripple Adder
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <ul style="list-style: disc;">
+                            <li><b>Start</b>- Starts the simulation after the inputs are properly selected. Default
+                                speed is 1x.</li>
+                            <li>Select the speed through dropdown menu</li>
+                            <li>The default speed is reset to x1 automatically at the beginning of every simulation or whenever you pause and resume. If you want to change the speed, you can do so only while the simulation is running (only after starting or after resuming the simulation).</li>
+                            <li><b>Reset</b> - Resets the simulation</li>
+                            <li>Click on the green input bits to set their values.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="columns is-centered">
+        <div class="column">
+            <select class="speed-box" autocomplete="off" name="speed" onchange="setSpeed(this.value)" id="speed">
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+            </select>
+            <button class="v-button" id="play-or-pause" onclick="simulationStatus()">Start</button>
+            <button class="v-button" id="restart" onclick="restartCircuit()">Reset</button>
+        </div>
+    </div>
+    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+        <div class="column is-9-desktop is-12-tablet is-12-mobile">
+            <div id="circuit-board">
+                <div id="working-area">
+
+                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="140%"
+                        viewBox="0 80 1000 800 ">
+
+                        <path id="path1" class="wire-demo" d="M 150,240 v 100" />
+
+                        <path id="path2" class="wire-demo" d="M 200,240 v 100" />
+
+                        <path id="path3" class="wire-demo" d="M 350,240 v 100" />
+
+                        <path id="path4" class="wire-demo" d="M 400,240 v 100" />
+
+                        <path id="path5" class="wire-demo" d="M 550,240 v 100" />
+
+                        <path id="path6" class="wire-demo" d="M 600,240 v 100" />
+
+                        <path id="path7" class="wire-demo" d="M 750,240 v 100" />
+
+                        <path id="path8" class="wire-demo" d="M 800,240 v 100" />
+
+                        <path id="path9" class="wire-demo" d="M 25,390 h 100" />
+
+                        <path id="path10" class="wire-demo" d="M 225,390 h 100" />
+
+                        <path id="path11" class="wire-demo" d="M 425,390 h 100" />
+
+                        <path id="path12" class="wire-demo" d="M 625,390 h 100" />
+
+                        <path id="path13" class="wire-demo" d="M 825,390 h 100" />
+
+                        <path id="path14" class="wire-demo" d="M 175,440 v 100" />
+                        <path id="path15" class="wire-demo" d="M 375,440 v 100" />
+                        <path id="path16" class="wire-demo" d="M 575,440 v 100" />
+                        <path id="path17" class="wire-demo" d="M 775,440 v 100" />
+
+
+                        <rect id="adder1" x="125" y="340" class="fulladder-demo color-blue" />
+                        <rect id="adder2" x="325" y="340" class="fulladder-demo color-blue" />
+                        <rect id="adder3" x="525" y="340" class="fulladder-demo color-blue" />
+                        <rect id="adder4" x="725" y="340" class="fulladder-demo color-blue" />
+
+                        <circle id="inputa0" cx="150" cy="240" r="15" onclick="appendInputA0()" class="color-green" />
+            
+                        <circle id="inputb0" cx="200" cy="240" r="15" onclick="appendInputB0()" class="color-green" />
+                    
+                        <circle id="inputa1" cx="350" cy="240" r="15" onclick="appendInputA1()" class="color-green" />
+            
+                        <circle id="inputb1" cx="400" cy="240" r="15" onclick="appendInputB1()" class="color-green" />
+                    
+                        <circle id="inputa2" cx="550" cy="240" r="15" onclick="appendInputA2()" class="color-green" />
+            
+                        <circle id="inputb2" cx="600" cy="240" r="15" onclick="appendInputB2()" class="color-green" />
+                    
+                        <circle id="inputa3" cx="750" cy="240" r="15" onclick="appendInputA3()" class="color-green" />
+            
+                        <circle id="inputb3" cx="800" cy="240" r="15" onclick="appendInputB3()" class="color-green" />
+                    
+                        <circle id="inputc0" cx="25" cy="390" r="15" onclick="appendInputC0()" class="color-green" />
+                    
+                        <circle id="outputc4" cx="925" cy="390" r="15" class="color-green" />
+                        <circle id="outputs0" cx="175" cy="540" r="15" class="color-green" />
+                        <circle id="outputs1" cx="375" cy="540" r="15" class="color-green" />
+                        <circle id="outputs2" cx="575" cy="540" r="15" class="color-green" />
+                        <circle id="outputs3" cx="775" cy="540" r="15" class="color-green" />
+                        <text class="text-demo" x="155" y="390" >1-bit</text>
+                        <text class="text-demo" x="140" y="410" >full adder</text>
+                        <text class="text-demo" x="355" y="390" >1-bit</text>
+                        <text class="text-demo" x="340" y="410" >full adder</text>
+                        <text class="text-demo" x="555" y="390" >1-bit</text>
+                        <text class="text-demo" x="540" y="410" >full adder</text>
+                        <text class="text-demo" x="755" y="390" >1-bit</text>
+                        <text class="text-demo" x="740" y="410" >full adder</text>
+                        <text class="text-demo" x="140" y="220" >A0</text>
+                        <text class="text-demo" x="340" y="220" >A1</text>
+                        <text class="text-demo" x="540" y="220" >A2</text>
+                        <text class="text-demo" x="740" y="220" >A3</text>
+                        <text class="text-demo" x="190" y="220" >B0</text>
+                        <text class="text-demo" x="390" y="220" >B1</text>
+                        <text class="text-demo" x="590" y="220" >B2</text>
+                        <text class="text-demo" x="790" y="220" >B3</text>
+                        <text class="text-demo" x="15" y="370" >C0</text>
+                        <text class="text-demo" x="915" y="370" >C4</text>
+                        <text class="text-demo" x="165" y="570" >S0</text>
+                        <text class="text-demo" x="365" y="570" >S1</text>
+                        <text class="text-demo" x="565" y="570" >S2</text>
+                        <text class="text-demo" x="765" y="570" >S3</text>
+                        
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div class="column is-3-desktop is-4-tablet is-12-mobile">
+            <div class="v-datalist-container components-list">
+                <div class="v-datalist-title">Observations</div>
+                <div class="v-datalist-row">
+                    <div id="observations"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script type="module" src="js/animation-ripple-adder.js"></script>
+</body>
+
+</html>

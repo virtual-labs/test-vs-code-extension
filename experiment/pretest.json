@@ -1,39 +1,67 @@
 {
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
+    "version": 2.0,
+    "questions": [
+        {
+            "question": "1. Which of the following gate outputs 1 on passing of 0, 1 bits:",
+            "answers": {
+                "a": "XOR",
+                "b": "NOT",
+                "c": "AND",
+                "d": "NOR"
+            },
+            "correctAnswer": "a",
+            "explanations": {},
+            "difficulty": "advanced"
+        },
+        {
+            "question": "2. Which of the following is correct decimal representation of 10001:",
+            "answers": {
+                "a": "9",
+                "b": "8",
+                "c": "18",
+                "d": "17"
+            },
+            "correctAnswer": "d",
+            "explanations": {},
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "3. XNOR cannot be a combination of which of the following gates:",
+            "answers": {
+                "a": "XOR and NOT",
+                "b": "OR and NOT",
+                "c": "AND and NAND",
+                "d": "NAND and XOR"
+            },
+            "correctAnswer": "c",
+            "explanations": {},
+            "difficulty": "beginner"
+        },
+        {
+            "question": "4. 1 bit and 1 bit adds up to (in binary representation)",
+            "answers": {
+                "a": "1",
+                "b": "2",
+                "c": "11",
+                "d": "10"
+            },
+            "correctAnswer": "d",
+            "explanations": {
+                "b": "This is decimal representation of sum and not binary."
+            },
+            "difficulty": "beginner"
+        },
+        {
+            "question": "5. What is the sum and carry value on addition of 1 bit and 1 bit:",
+            "answers": {
+                "a": "1 and 0",
+                "b": "1 and 1",
+                "c": "0 and 1",
+                "d": "0 and 0"
+            },
+            "correctAnswer": "c",
+            "explanations": {},
+            "difficulty": "intermediate"
+        }
+    ]
 }
