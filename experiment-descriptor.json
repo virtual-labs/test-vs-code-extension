@@ -1,0 +1,67 @@
+{
+    "unit-type": "lu",
+    "label": "",
+    "basedir": ".",
+    "units": [
+      {
+        "unit-type": "aim"
+      },
+      {
+        "target": "theory.html",
+        "source": "theory.md",
+        "label": "Theory",
+        "unit-type": "task",
+        "content-type": "text"
+      },
+      {
+        "target": "objective.html",
+        "source": "objective.md",
+        "label": "Objective",
+        "unit-type": "task",
+        "content-type": "text"
+      },
+      {
+        "target": "procedure.html",
+        "source": "procedure.md",
+        "label": "Procedure",
+        "unit-type": "task",
+        "content-type": "text"
+      },
+      {
+        "unit-type": "task",
+        "label": "Pretest",
+        "content-type": "assesment",
+        "source": "pretest.json",
+        "target": "pretest.html"
+      },
+      {
+        "target": "demo.html",
+        "source": "simulation/demo.html",
+        "label": "Demo",
+        "unit-type": "task",
+        "content-type": "simulation"
+      },
+      {
+        "target": "practice.html",
+        "source": "simulation/practice.html",
+        "label": "Practice",
+        "unit-type": "task",
+        "content-type": "simulation"
+      },
+      {
+        "unit-type": "task",
+        "label": "Posttest",
+        "content-type": "assesment",
+        "source": "posttest.json",
+        "target": "posttest.html"
+      },
+      {
+        "target": "assignment.html",
+        "source": "assignment.md",
+        "label": "Assignment",
+        "unit-type": "task",
+        "content-type": "text"
+      }
+    ]
+  }
+  
