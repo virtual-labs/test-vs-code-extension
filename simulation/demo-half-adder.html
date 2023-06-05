@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+    <title>
+        Half Adder
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-one-quarter v-instruction-title">
+                Tasks
+            </div>
+            <div class="column">
+                <div class="v-tabs">
+                    <ul>
+                        <li class="is-active" id="Task1">
+                            <a>
+                                Half Adder
+                            </a>
+                        </li>
+                        <li id="Task2" onclick="window.location.href = 'demo-full-adder.html';">
+                            <a>
+                                Full Adder
+                            </a>
+                        </li>
+
+                        <li id="Task3" onclick="window.location.href = 'demo-ripple-adder.html';">
+                            <a>
+                                Ripple Adder
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <ul style="list-style: disc;">
+                            <li><b>Start</b>- Starts the simulation after the inputs are properly selected. Default
+                                speed is 1x.</li>
+                            <li>Select the speed through dropdown menu</li>
+                            <li>The default speed is reset to x1 automatically at the beginning of every simulation or whenever you pause and resume. If you want to change the speed, you can do so only while the simulation is running (only after starting or after resuming the simulation).</li>
+                            <li><b>Reset</b> - Resets the simulation</li>
+                            <li>Click on the green input bits to set their values.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns is-centered">
+        <div class="column">
+            <select class="speed-box" autocomplete="off" name="speed" onchange="setSpeed(this.value)" id="speed">
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+            </select>
+            <button class="v-button" id="play-or-pause" onclick="simulationStatus()">Start</button>
+            <button class="v-button" id="restart" onclick="restartCircuit()">Reset</button>
+        </div>
+    </div>
+    <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+        <div class="column is-9-desktop is-12-tablet is-12-mobile">
+            <div id="circuit-board">
+                <div id="working-area">
+
+                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="140%"
+                        viewBox="0 85 700 800 ">
+
+                        <path id="path1" class="wire-demo" d="M 100,160 h 413" />
+
+                        <path id="path2" class="wire-demo" d="M 100,160 h 200 v 420 h 200" />
+                        
+                        <path id="path3" class="wire-demo" d="M 100,600 h 150 v -420 h 263" />
+                        
+                        <path id="path4" class="wire-demo" d="M 100,600 h 400" />
+                        <path id="path5" class="wire-demo" d="M 520,170 h 100" />
+
+                        <path id="path6" class="wire-demo" d="M 520,590 h 100" />
+
+                        <g id="and">
+                            <path class="gate-demo" d="M 500 565 v 50 h 50 Q 575 590 550 565 h -50" />
+                        </g>
+
+                        <g id="xor">
+                            <path class="gate-demo" d="M 495 135 Q 530 170 495 205 Q 531 170 495 135 M 500 135 Q 535 170 500 205 Q 605 170 500 135" />
+                        </g>
+                        <!-- M 245 20 Q 295 70 245 120 Q 395 70 245 20 -->
+                        <circle id="inputa" cx="100" cy="160" r="15" onclick="appendInputA()" class="color-green" />
+                        <circle id="inputb" cx="100" cy="600" r="15" onclick="appendInputB()" class="color-green" />
+                        <circle id="outputsum" cx="620" cy="170" r="15" class="color-green" />
+                        <circle id="outputcout" cx="620" cy="590" r="15" class="color-green" />
+                        <text class="text-demo" x="70" y="165">A</text>
+                        <text class="text-demo" x="70" y="605">B</text>
+                        <text class="text-demo" x="640" y="170">SUM</text>
+                        <text class="text-demo" x="640" y="590">CARRY</text>
+                        <text class="text-demo" x="519" y="178">XOR</text>
+                        <text class="text-demo" x="520" y="595">AND</text>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div class="column is-3-desktop is-4-tablet is-12-mobile">
+            <div class="v-datalist-container components-list">
+                <div class="v-datalist-title">Observations</div>
+                <div class="v-datalist-row">
+                    <div id="observations"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script type="module" src="js/animation-half-adder.js"></script>
+<script src="../assets/js/iframeResize.js"></script></body>
+
+</html>
